@@ -32,6 +32,7 @@ var isMatch = function(s, p) {
 
     for (let i = 0; i <= m; i++) {
         for (let j = 1; j <= n; j++) {
+            //第j个字符是*
             if (p.charAt(j - 1) == '*') {
                 dp[i][j] = dp[i][j - 2];
                 if (matches(s, p, i, j - 1)) {
