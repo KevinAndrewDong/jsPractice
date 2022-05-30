@@ -9,6 +9,9 @@ function green() {
 function yellow() {
     console.log("yellow");
 }
+
+
+//Answer
 const light = function (timer, cb) {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -30,3 +33,5 @@ const step = function () {
 }
 
 step();
+
+//

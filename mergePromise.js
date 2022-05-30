@@ -23,16 +23,25 @@ const ajaxC = () =>
         return "C";
     });
 
-const mergePromise = (fetchArray) => {
-    let result = []
-    let promise = Promise.resolve()
-    fetchArray.forEach(function (item) {
-        promise = promise.then(item)
-        result.push(promise)
-    })
-    return Promise.all(result)
 
-};
+
+//Answer
+function mergePromise (ajaxArray) {
+    const data = [];
+    let promise = Promise.resolve();
+
+    ajaxArray.forEach(ajax => {
+        // 第一次的then为了用来调用ajax
+        // 第二次的then是为了获取ajax的结果
+        promise = promise.then(ajax).then(res => {
+            data.push(res);
+            return data;
+        })
+    })
+    return promise;
+}
+//
+
 
 //测试用例
 mergePromise([ajaxA, ajaxB, ajaxC]).then(

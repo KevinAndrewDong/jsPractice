@@ -2,6 +2,7 @@
 function debounce (func, wait) {
     let timer = null;
 
+
     return function () {
         if (timer) {
             clearTimeout(timer);
@@ -11,7 +12,7 @@ function debounce (func, wait) {
         let self = this;
         let args = arguments;
 
-        tiemr = setTimeout(function() {
+        timer = setTimeout(function() {
             func.apply(self, args);
             timer = null;
         }, wait);
