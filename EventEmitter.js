@@ -30,7 +30,7 @@ class EventEmitter{
     //停止监听某个事件
     off(type,callback){
         if(this.events[type]){
-            //使用过滤器filter 如果fn和传入的callback相等的时候就删除它
+            //使用过滤器filter 只有fn和传入的callback不相等的时候留下
             this.events[type] = this.events[type].filter(fn=>{
                 fn !== callback
             })
