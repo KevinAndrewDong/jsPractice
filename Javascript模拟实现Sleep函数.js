@@ -16,6 +16,8 @@ sleep(1500).then(res => {
     console.log("sleep");
 });
 
+
+
 //Generator 基于 promise
 function* sleep2(wait) {
     yield new Promise(resolve => setTimeout(resolve, wait));
@@ -26,8 +28,11 @@ sleep2(2500)
     // sleep 之后干的事
     console.log("sleep2");
 });
-//async/await 基于 promise
 
+
+
+
+//async/await 基于 promise
 async function sleep3(wait) {
     await new Promise(resolve => {
         setTimeout(resolve, wait);
@@ -35,3 +40,4 @@ async function sleep3(wait) {
 }
 sleep3(3500).then(() => {
     console.log("sleep3");
+})
