@@ -6,6 +6,20 @@
 核心技巧：函数式传入的state总是能够获取到最新的state,但是对象式则不能，但是最后render只会更新一次。
  */
 
+/*
+setState 不会立即改变 React 组件中 state 的值
+setState 通过引发一次组件的更新过程来引发重新绘制
+多次 setState 函数调用产生的效果会合并(批处理)
+
+setState 是同步还是异步?
+
+代码同步，渲染看模式
+legacy模式：
+非原生事件、setTimeout/setInterval 的情况下为异步;
+addEventListener绑定原生事件、setTimeout/setInterval 时会同步
+concurrent 模式：异步
+ */
+
 class App extends Component {
     state = {
         count: 0
