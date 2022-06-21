@@ -36,6 +36,7 @@ var preorderTraversal = function(root) {
     while (stack.length) {
         const cur= stack.pop();
         ret.push(cur.val);
+        //子节点先右再左压入栈中，出栈时先左节点再右节点
         cur.right && stack.push(cur.right);
         cur.left && stack.push(cur.left);
     }
@@ -62,7 +63,9 @@ var postorderTraversal = function(root) {
     let ret = [];
     while (stack.length) {
         const cur = stack.pop();
+        //根结点放末尾
         ret.unshift(cur.val);
+        //接着是右节点，最后是左节点。实现左-右-中的顺序
         cur.left && stack.push(cur.left);
         cur.right && stack.push(cur.right);
     }
@@ -86,15 +89,19 @@ var postorderTraversal = function(root) {
 var levelOrder = function(root) {
     //迭代
     if (!root) return [];
+
     let queue = [root];
     let ret = [];
     let level = 0;
+
     while(queue.length) {
         ret.push([]);
+
         const len = queue.length;
         for (let i = 0; i < len; i++) {
             const cur = queue.shift();
             ret[level].push(cur.val);
+            //queue先左后右
             cur.left && queue.push(cur.left);
             cur.right && queue.push(cur.right);
         }

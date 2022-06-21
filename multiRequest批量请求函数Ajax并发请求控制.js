@@ -16,10 +16,8 @@ function multiRequest(urls = [], maxNum) {
             next();
         }
 
-
         function next() {
             let current = count++;
-            // 处理边界条件
             if (current >= len) {
                 // 请求全部完成, 就将promise置为成功状态, 然后将result作为promise值返回
                 !result.includes(false) && resolve(result);
@@ -40,8 +38,8 @@ function multiRequest(urls = [], maxNum) {
                     }
                 })
                 .catch((err) => {
-                    console.log(`结束 ${current}`, new Date().toLocaleString());
                     result[current] = err;
+                    console.log(`结束 ${current}`, new Date().toLocaleString());
 
                     // 请求没有全部完成, 就递归
                     if (current < len) {
