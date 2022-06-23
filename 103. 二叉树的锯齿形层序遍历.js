@@ -14,14 +14,15 @@ var zigzagLevelOrder = function(root) {
             if (isLeftOrder) {
                 levelList.push(cur.val);
             } else {
+                //反向
                 levelList.unshift(cur.val);
             }
-
+            //queue先左后右
             cur.left && queue.push(cur.left);
             cur.right && queue.push(cur.right);
         }
-
         ret.push(levelList);
+
         isLeftOrder = !isLeftOrder;
     }
 
