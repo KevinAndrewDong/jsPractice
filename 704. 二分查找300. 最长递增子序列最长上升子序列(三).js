@@ -56,8 +56,6 @@ var lengthOfLIS = function(nums) {
 };
 
 /*
-链接：https://www.nowcoder.com/questionTerminal/9cf027bf54714ad889d4f30ff0ae5481?answerType=1&f=discussion
-来源：牛客网
 
 最长上升子序列(三)
 给定数组 arr ，设长度为 n ，输出 arr 的最长上升子序列。（如果有多个答案，请输出其中 按数值(注：区别于按单个字符的ASCII码值)进行比较的 字典序最小的那个）
@@ -65,13 +63,13 @@ var lengthOfLIS = function(nums) {
 要求：空间复杂度 O(n)O(n)，时间复杂度 O(nlogn)O(nlogn)
  */
 
-/* [0, 8, 4, 12, 2]
+/*
+[0, 8, 4, 12, 2]
 d = [0, 2, 12];
 len = 3;
 d = [1, 2, 1, 3, 1];
 d[i]所有长度为i+1的递增子序列中, 最小的那个序列尾数.
 p[i]存放以元素i结尾的最大递增子序列长度
-
  */
 var arrOfLIS = function(arr) {
     let n = arr.length;
@@ -80,6 +78,7 @@ var arrOfLIS = function(arr) {
     let len = 1;
     let d = new Array(n);
     d[len] = arr[0];
+
     let p = new Array(n);
     p[0] = 1;
 
@@ -104,6 +103,7 @@ var arrOfLIS = function(arr) {
         }
     }
 
+    //p[i]存放以元素i结尾的最大递增子序列长度
     let res = [];
     for (let i = n - 1; i >= 0; i--) {
         if (p[i] === len) {
