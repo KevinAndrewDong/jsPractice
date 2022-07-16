@@ -24,22 +24,23 @@ var search = function(nums, target) {
 子序列 是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。
  */
 
-//d[i]所有长度为i+1的递增子序列中, 最小的那个序列尾数.
+
 var lengthOfLIS = function(nums) {
     let n = nums.length;
     if (n === 0) return 0;
 
-    let len = 1;
+    //d[i]所有长度为i+1的递增子序列中, 最小的那个序列尾数.
     let d = new Array(n);
     d[len] = nums[0];
 
 
+    let len = 1;
     for (let i = 1; i < n; i++) {
         if (nums[i] > d[len]) {
             d[len + 1] = nums[i];
             len++;
         } else {
-            //二分找d[l] < nums[i] < d[l+1]
+            //二分找nums[i]比哪一个更小,去替换
             let left = 1, right = len + 1;
             while (left < right) {
                 let mid = Math.floor((right - left) / 2) + left;
@@ -53,6 +54,21 @@ var lengthOfLIS = function(nums) {
         }
     }
     return len;
+
+    // let result = 1;
+
+    // let dp = Array(nums.length).fill(1);
+    // for (let i = 0; i < nums.length; i++) {
+    //     //左指针找比nums[i]小的
+    //     for (let j = 0; j < i; j++) {
+    //         if (nums[i] > nums[j]) {
+    //             //动态规划
+    //             dp[i] = Math.max(dp[i], dp[j] + 1);
+    //         }
+    //     }
+    //     result = Math.max(result, dp[i]);
+    // }
+    // return result;
 };
 
 /*
@@ -69,7 +85,7 @@ d = [0, 2, 12];
 len = 3;
 d = [1, 2, 1, 3, 1];
 d[i]所有长度为i+1的递增子序列中, 最小的那个序列尾数.
-p[i]存放以元素i结尾的最大递增子序列长度
+p[i]存放以元素i结尾的最大递增子序列长度, 最长子序列对应的p[i] 为 1, 2, 3...
  */
 var arrOfLIS = function(arr) {
     let n = arr.length;
@@ -88,7 +104,7 @@ var arrOfLIS = function(arr) {
             len++;
             p[i] = len;
         } else {
-            //二分找d[l] < nums[i] < d[l+1]
+            //二分找nums[i]比哪一个更小,去替换
             let left = 1, right = len + 1;
             while (left < right) {
                 let mid = Math.floor((right - left) / 2) + left;
