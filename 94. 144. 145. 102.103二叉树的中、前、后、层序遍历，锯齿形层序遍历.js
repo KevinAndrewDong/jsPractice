@@ -128,12 +128,12 @@ var levelOrder = function(root) {
     // return ret;
 };
 
-
+//锯齿状层序遍历
 var zigzagLevelOrder = function(root) {
     if (!root) return [];
 
-    let ret = [];
     let queue = [root];
+    let ret = [];
     let isLeftOrder = true;
 
     while(queue.length) {
