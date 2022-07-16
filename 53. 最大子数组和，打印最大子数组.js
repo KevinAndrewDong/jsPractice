@@ -25,9 +25,10 @@ var maxSubArray = function(nums) {
 
  */
 var maxSubArray = function(nums) {
-    let maxStart = 0, maxLen = 0, maxSum = nums[0];
     const dp = [nums[0]];
     let start = 0, len = 1;
+
+    let maxStart = 0, maxLen = 0, maxSum = nums[0];
 
     for (let i = 1; i < nums.length; i++) {
         if (dp[i - 1] > 0) {
@@ -39,6 +40,7 @@ var maxSubArray = function(nums) {
             len = 1;
         }
 
+        //增加更新start,len
         if (dp[i] > maxSum) {
             maxStart = start;
             maxLen = len;
