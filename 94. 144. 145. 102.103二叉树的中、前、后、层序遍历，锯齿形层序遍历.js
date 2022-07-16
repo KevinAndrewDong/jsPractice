@@ -37,7 +37,7 @@ var preorderTraversal = function(root) {
     while (stack.length) {
         const cur= stack.pop();
         ret.push(cur.val);
-        //子节点先右再左压入栈中，出栈时先左节点再右节点
+        //先右再左压入栈中，出栈时先左节点再右节点
         cur.right && stack.push(cur.right);
         cur.left && stack.push(cur.left);
     }
@@ -85,8 +85,8 @@ var postorderTraversal = function(root) {
     // return ret;
 };
 
-//层
 
+//层
 var levelOrder = function(root) {
     //迭代
     if (!root) return [];
@@ -102,6 +102,7 @@ var levelOrder = function(root) {
         for (let i = 0; i < len; i++) {
             const cur = queue.shift();
             ret[level].push(cur.val);
+
             //queue先左后右
             cur.left && queue.push(cur.left);
             cur.right && queue.push(cur.right);
@@ -109,17 +110,53 @@ var levelOrder = function(root) {
         level++;
     }
     return ret;
-    // //循环
+
+    //递归
     // let ret = [];
 
     // function levelorder(node, level) {
     //     if (!node) return ;
+
     //     ret[level] = ret[level] || [];
     //     ret[level].push(node.val);
+
     //     levelorder(node.left, level + 1);
     //     levelorder(node.right, level + 1);
     // }
 
     // levelorder(root, 0);
     // return ret;
+};
+
+
+var zigzagLevelOrder = function(root) {
+    if (!root) return [];
+
+    let ret = [];
+    let queue = [root];
+    let isLeftOrder = true;
+
+    while(queue.length) {
+        let levelList = [];
+
+        const len = queue.length;
+        for (let i = 0; i < len; i++) {
+            let cur = queue.shift();
+
+            if (isLeftOrder) {
+                levelList.push(cur.val);
+            } else {
+                //反向
+                levelList.unshift(cur.val);
+            }
+
+            //queue先左后右
+            cur.left && queue.push(cur.left);
+            cur.right && queue.push(cur.right);
+        }
+        ret.push(levelList);
+        isLeftOrder = !isLeftOrder;
+    }
+
+    return ret;
 };
