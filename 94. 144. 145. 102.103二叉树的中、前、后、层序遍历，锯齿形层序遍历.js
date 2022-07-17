@@ -137,9 +137,9 @@ var zigzagLevelOrder = function(root) {
     let isLeftOrder = true;
 
     while(queue.length) {
-        let levelList = [];
+        let levelList = [];//每次都重置
 
-        const len = queue.length;
+        const len = queue.length;//缓存长度
         for (let i = 0; i < len; i++) {
             let cur = queue.shift();
 
@@ -154,7 +154,9 @@ var zigzagLevelOrder = function(root) {
             cur.left && queue.push(cur.left);
             cur.right && queue.push(cur.right);
         }
+
         ret.push(levelList);
+
         isLeftOrder = !isLeftOrder;
     }
 
