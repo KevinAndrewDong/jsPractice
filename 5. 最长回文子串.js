@@ -1,8 +1,6 @@
 /*
 5. 最长回文子串
 给你一个字符串 s，找到 s 中最长的回文子串。
-
-
  */
 
 var longestPalindrome = function(s) {
@@ -10,8 +8,8 @@ var longestPalindrome = function(s) {
 
     //定义中心拓展法
     const expand = (s, left, right) => {
-        while(left >= 0 && right < s.length &&
-        s.charAt(left) === s.charAt(right)) {
+        while(left >= 0 && right < s.length
+        && s.charAt(left) === s.charAt(right)) {
             left--;
             right++;
         }
