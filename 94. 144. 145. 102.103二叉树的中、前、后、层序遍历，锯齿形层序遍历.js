@@ -66,7 +66,7 @@ var postorderTraversal = function(root) {
         const cur = stack.pop();
         //根结点放末尾
         ret.unshift(cur.val);
-        //接着是右节点，最后是左节点。实现左-右-中的顺序
+        //接着是右节点，最后是左节点。stack反向放
         cur.left && stack.push(cur.left);
         cur.right && stack.push(cur.right);
     }
