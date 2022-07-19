@@ -18,6 +18,26 @@ var search = function(nums, target) {
 };
 
 /*
+69. x 的平方根
+给你一个非负整数 x ，计算并返回 x 的 算术平方根 。
+
+由于返回类型是整数，结果只保留 整数部分 ，小数部分将被 舍去 。
+ */
+
+var mySqrt = function(x) {
+    let left = 0, right = x;
+    while (left < right ) {
+        let mid = left + Math.floor((right - left) / 2);
+        if (mid * mid < x) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+    return left * left > x ? left - 1 : left;
+};
+
+/*
 34. 在排序数组中查找元素的第一个和最后一个位置
 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。
 
