@@ -34,17 +34,19 @@ function throttle(func, wait) {
 
         let self = this;
         let args = arguments;
-        let nowTime = +new Date();
 
+        let nowTime = +new Date();
         const remainWaitTime = wait - (nowTime - lastTime);
 
         if (remainWaitTime <= 0) {
             lastTime = nowTime;
+
             func.apply(self, args);
         } else {
             timer = setTimeout(function() {
                 //remainWaitTime后到第二段，lastTime设置为起始点
                 lastTime = +new Date();
+
                 func.apply(self, args);
                 timer = null;
             }, remainWaitTime);
