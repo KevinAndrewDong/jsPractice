@@ -15,14 +15,16 @@ var longestValidParentheses = function(s) {
 
     let stack = [];
     stack.push(-1);
+
     let result = 0;
     for (let i = 0; i < s.length; ++i) {
         if (s.charAt(i) == '(') {
-            stack.push(i);
+            stack.push(i);//i:上一个（
         } else {
             stack.pop();
+
             if (stack.length == 0) {
-                stack.push(i);
+                stack.push(i);//i:上一个）
             } else {
                 result = Math.max(result, i - stack[stack.length - 1]);
             }
