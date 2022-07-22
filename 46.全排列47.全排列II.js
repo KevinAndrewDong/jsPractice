@@ -44,7 +44,7 @@ var permuteUnique = function(nums) {
     const enmurate = (preArr, candidates) => {
         if (candidates.length == 1) res.push([...preArr, ...candidates]);
 
-        let set = new Set();
+        let set = new Set();//再递归一层时，set重置了
         for (let i = 0; i < candidates.length; i++) {
             if (!set.has(candidates[i])) {
                 set.add(candidates[i]);
