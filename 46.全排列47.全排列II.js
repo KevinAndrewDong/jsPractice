@@ -8,11 +8,14 @@ var permute = function(nums) {
 
     const res = [];
     const enmurate = (preArr, candidates) => {
+        //边界： 剩最后一个数字
         if (candidates.length == 1) res.push([...preArr, ...candidates]);
 
         for (let i = 0; i < candidates.length; i++) {
+            //候选数组里去除candidates[i]
             const temp = candidates.slice();
             temp.splice(i, 1);
+            //放入candidates[i]
             enmurate([...preArr, candidates[i]], temp);
         }
     }
@@ -24,8 +27,6 @@ var permute = function(nums) {
 /*
 47. 全排列 II
 给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
-
-
 
 示例 1：
 
