@@ -58,14 +58,40 @@ var dfs = function(root, targetSum, cur, map) {
 
     let count = 0;
     cur += root.val;
-
-    //targetSum 数目 === cur - targetSum 数目
+    //有几个cur - targetSum，就有几条路
     count = map.get(cur - targetSum) || 0;
-    //回溯 + 前缀和
+
+    //把cur次数放进map
     map.set(cur, (map.get(cur) || 0) + 1);
     count += dfs(root.left, targetSum, cur, map);
     count += dfs(root.right, targetSum, cur, map);
     map.set(cur, (map.get(cur) || 0) - 1);
 
     return count;
+}
+
+/*
+129. 求根节点到叶节点数字之和
+给你一个二叉树的根节点 root ，树中每个节点都存放有一个 0 到 9 之间的数字。
+每条从根节点到叶节点的路径都代表一个数字：
+
+例如，从根节点到叶节点的路径 1 -> 2 -> 3 表示数字 123 。
+计算从根节点到叶节点生成的 所有数字之和 。
+
+叶节点 是指没有子节点的节点。
+ */
+
+var sumNumbers = function(root) {
+    return dfs(root, 0);
+};
+
+const dfs = (root, preSum) => {
+    if (root === null) return 0;
+
+    let sum = preSum * 10 + root.val;
+    if (root.left === null && root.right === null) {
+        return sum;
+    } else {
+        return dfs(root.left, sum) + dfs(root.right, sum);
+    }
 }
