@@ -40,6 +40,7 @@ var LRUCache = function(capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function(key) {
+    //key: key, value: node
     const node = this.map.get(key);
     if (node) {
         //放末尾
