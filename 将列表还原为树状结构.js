@@ -12,7 +12,7 @@ let arr = [
 //         if (item.pid === pid) {
 //             const newItem = {...item, children: []};
 //             result.push(newItem);
-//             getChildren(data, newItem.children, item.id);
+//             getChildren(data, newItem.children, item.id);//item.id作为下一次的pid，去比较
 //         }
 //     }
 // }
