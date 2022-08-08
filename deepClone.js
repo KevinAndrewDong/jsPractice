@@ -4,6 +4,7 @@ function deepClone(obj, hash = new WeakMap()) {
     if (obj instanceof RegExp) return new RegExp(obj);
     if (typeof obj !== "object") return obj;
 
+    //set去重
     if (hash.has(obj))
         return hash.get(obj);
     let cloneObj = new obj.constructor();
