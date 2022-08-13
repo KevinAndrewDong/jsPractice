@@ -2,54 +2,28 @@
 function debounce (func, wait) {
     let timer = null;
 
-
     return function () {
-        if (timer) {
-            clearTimeout(timer);
-            timer = null
-        }
-
-        let self = this;
-        let args = arguments;
+        clearTimeout(timer);
 
         timer = setTimeout(function() {
-            func.apply(self, args);
-            timer = null;
+            func.apply(this, arguments);
         }, wait);
     };
 }
 
 
 //throttle 每隔一段时间，只执行一次函数。
-
 function throttle(func, wait) {
-    let lastTime = 0;
     let timer = null;
 
     return function() {
         if (timer) {
-            clearTimeout(timer);
+            return ;
+        }
+
+        timer = setTimeout(function() {
+            func.apply(this, arguments);
             timer = null;
-        }
-
-        let self = this;
-        let args = arguments;
-
-        let nowTime = +new Date();
-        const remainWaitTime = wait - (nowTime - lastTime);
-
-        if (remainWaitTime <= 0) {
-            lastTime = nowTime;
-
-            func.apply(self, args);
-        } else {
-            timer = setTimeout(function() {
-                //remainWaitTime后到第二段，lastTime设置为起始点
-                lastTime = +new Date();
-
-                func.apply(self, args);
-                timer = null;
-            }, remainWaitTime);
-        }
+        }, wait);
     }
 }
