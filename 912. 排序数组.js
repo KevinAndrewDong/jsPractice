@@ -37,7 +37,6 @@ var quickSort = function(num, left, right) {
         while (num[i] <= num[flag] && i < j) i++;
 
         // ES6语法糖[num[flag],num[j],num[i]] = [num[j],num[i],num[flag]];
-        let temp = num[flag];
         num[flag] = num[j];//小的往左
         num[j] = num[i];//大的往右
         num[i] = temp//flag放中间
