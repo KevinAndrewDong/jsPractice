@@ -1,15 +1,17 @@
-var search = function(nums, target) {
-    let left = 0, right = nums.length;
-    while (left < right) {
-        let mid = Math.floor((right - left) / 2) + left;
-        if (nums[mid] <= target) {
-            left = mid + 1;
-        } else {
-            //找左边界
-            right = mid;
+'use strict';
+var a = 20;
+function foo () {
+    var a = 1;
+    var obj = {
+        a: 10,
+        c: this.a + 20,
+        fn: function () {
+            return this.a;
         }
     }
-    return left;
-};
+    return obj.c;
 
-console.log(search([1,2,2,4], 2));
+}
+
+console.log(window.foo()); //c里面的那个this,这时候因为是window调用，所以指向this,this.a = 20
+console.log(foo());

@@ -6,13 +6,10 @@ class EventEmitter{
     }
     //绑定事件函数
     on(type,callback){
-        //首先判断这个事件是否存在
         if(this.events[type]){
-            //如果存在的话直接给数组this.events[type]尾部添加回调函数
             this.events[type].push(callback)
         }
         else{
-            //如果不存在则建立
             this.events[type] = [callback]
         }
     }
@@ -30,7 +27,7 @@ class EventEmitter{
     //停止监听某个事件
     off(type,callback){
         if(this.events[type]){
-            //使用过滤器filter 只有fn和传入的callback不相等的时候留下
+            //使用过滤器filter 留下fn和传入的callback不相等的情况
             this.events[type] = this.events[type].filter(fn=>{
                 fn !== callback
             })
@@ -40,7 +37,6 @@ class EventEmitter{
     //单次监听器，只能被触发一次，下次触发就不会响应
     once(type,callback){
         let onlyOnce = function(...args){
-            //执行此回调函数
             callback(...args)
             //执行完毕后关闭回调函数，就达到了一次性触发
             this.off(type,onlyOnce)
