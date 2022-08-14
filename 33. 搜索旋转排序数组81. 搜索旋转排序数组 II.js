@@ -25,14 +25,14 @@ var search = function(nums, target) {
 
         if (nums[mid] === target) return mid;
 
-        //start-mid单调递增
-        if (nums[start] <= nums[mid]) {
+
+        if (nums[start] <= nums[mid]) { //start - mid 单调递增
             if (target >= nums[start] && target < nums[mid]) {
                 end = mid - 1;
             } else {
                 start = mid + 1;
             }
-        } else {
+        } else {  //mid - end 单调递增
             if (target > nums[mid] && target <= nums[end]) {
                 start = mid + 1;
             } else {
