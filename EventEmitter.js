@@ -1,7 +1,6 @@
 class EventEmitter{
     constructor(){
         //在事件被创建或者实例化的时候调用此方法
-        //注册一个空对象
         this.events = {}
     }
     //绑定事件函数
@@ -27,7 +26,7 @@ class EventEmitter{
     //停止监听某个事件
     off(type,callback){
         if(this.events[type]){
-            //使用过滤器filter 留下fn和传入的callback不相等的情况
+            //留下fn和传入的callback不相等的
             this.events[type] = this.events[type].filter(fn=>{
                 fn !== callback
             })
