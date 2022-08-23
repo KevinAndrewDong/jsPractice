@@ -26,15 +26,14 @@ var decodeString = function(s) {
 
         if (!isNaN(item)) {//数字
             num = num * 10 + parseInt(item);
-        } else if (item === '[') {//前置的result, num 入栈
+        } else if (item === '[') {//之前的的str, num 入栈
             strStack.push(result);
             result = '';
 
             numStack.push(num);
             num = 0;
         } else if (item === ']') {//两个都出栈，计算
-            let count = numStack.pop();
-            result = strStack.pop() + result.repeat(count);
+            result = strStack.pop() + result.repeat(numStack.pop());
         } else {//字符
             result += item;
         }
