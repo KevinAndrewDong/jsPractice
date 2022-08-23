@@ -32,8 +32,6 @@ var lengthOfLongestSubstring = function(s) {
 395. 至少有 K 个重复字符的最长子串
 给你一个字符串 s 和一个整数 k ，请你找出 s 中的最长子串， 要求该子串中的每一字符出现次数都不少于 k 。返回这一子串的长度。
 
-
-
 示例 1：
 
 输入：s = "aaabb", k = 3
@@ -56,7 +54,7 @@ const dfs = (s, start, end, k) => {
     for (let mid = start; mid < end; mid++) {
         if (map.get(s[mid]) >= k) continue;
 
-        //跳过次数小于k的那一段
+        //跳过次数小于k的那一段, 分成start - mid 和 midNext - end两部分， 取其中长的，递归
         let midNext = mid + 1;
         while (midNext < end && map.get(s[midNext]) < k) {
             midNext++;
