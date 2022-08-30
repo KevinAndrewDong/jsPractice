@@ -34,6 +34,7 @@ var decodeString = function(s) {
             num = 0;
         } else if (item === ']') {//两个都出栈，计算
             result = strStack.pop() + result.repeat(numStack.pop());
+            console.log(result);
         } else {//字符
             result += item;
         }
@@ -41,3 +42,5 @@ var decodeString = function(s) {
 
     return result;
 };
+
+console.log(decodeString('"3[a2[c]]"'))
