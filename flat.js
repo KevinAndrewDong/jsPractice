@@ -1,5 +1,5 @@
 //将一个“多维”数组降维
-
+//递归
 function myFlat(arr) {
     let res = [];
     for (const item of arr) {
@@ -12,7 +12,7 @@ function myFlat(arr) {
     }
     return res;
 }
-
+//迭代
 function myFlat(arr) {
     let res = [];
     const stack = [].concat(arr);
